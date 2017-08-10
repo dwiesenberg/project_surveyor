@@ -1,0 +1,12 @@
+<ol>
+  <% @surveys.each do |survey| %>
+  <li>
+    <p><b><%= survey.title %></b></p>
+    <p><%= survey.description %></p>
+    <p><%= survey.responses.count %> Responses</p>
+    <%= link_to 'Take Survey', new_survey_response_path(survey), class: 'btn btn-default' %>
+    <%= link_to 'View Results', survey_responses_path(survey), class: 'btn btn-default' %>
+    <br><br>
+  </li>
+  <% end %>  
+</ol>

@@ -1,0 +1,43 @@
+<%= render partial: 'shared/nav' %>
+
+<h1 class="text-center">Survey Builder</h1>
+<hr>
+
+<div class='text-center'>
+  <span class="text-muted">1. Build Survey</span>
+  <span class='marker'>|</span>
+  <span>2. Add Questions</span>  
+</div>
+
+<p>Next, fill in the questions.</p>
+<br>
+
+<h4>Title</h4>
+<p><%= @survey.title %></p>
+
+
+<h4>Description</h4>
+<p><%= @survey.description %></p>
+
+<hr>
+
+<h4>Add a Question:</h4>
+<p><em>Choose which type of question to add.</em></p>
+
+<%= form_for [@survey, @question] do |q| %>
+
+  <%= q.hidden_field :survey_id %>
+  
+  <%= q.select(:question_type, [['Mutiple Choice', 'Mutiple Choice'], ['Number Range', 'Number Range']], { include_blank: true }, {class: 'form-control'}) %>
+  <br>
+  <%= q.submit 'Add a New Question', class: 'btn btn-primary btn-block' %>
+
+<% end %>
+
+<hr>
+
+<%= render 'existing_questions' %>
+
+<hr>
+
+<%= link_to 'Finish Building Survey and Return', :root, class: 'btn btn-primary btn-block' %>

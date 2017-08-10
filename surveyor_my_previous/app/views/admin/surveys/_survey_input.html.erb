@@ -1,0 +1,41 @@
+
+<!-- new/edit  survey -->
+<!-- note: edit not in assignment -->
+
+<!-- Note: contains nested comment fields -->
+
+<h3 class="text-center">
+  <strong>1. Build Survey |</strong>
+  <a class="text-muted"> 2. Add Questions</a>
+</h3><br>
+
+<h4>First, choose a title and a description for your survey.</h4><br>
+
+<%= form_for [:admin, @survey] do |survey| %>
+
+  <h4>
+    <%= survey.label :title, "Survey Title" %><br>
+    <%= survey.text_field :title, size: 42,
+        placeholder: "Enter title here" %><br><br>
+
+
+    <%= survey.label :description, "Survey Description" %><br>
+    <%= survey.text_area :description, size: "42x5",
+        placeholder: "Enter description here" %><br><br>
+  </h4>
+
+  <!-- submit button -->
+  <div class= "row">
+    <div class = "col-md-12 text-center">
+      <br>
+      <%= survey.submit @survey.persisted? ? "Update Survey So Far and Begin Editing Questions" : "Create Survey and Begin Adding Questions", class: "btn btn-primary btn-lg btn-block" %>
+      <br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+  </div>
+
+<% end %>
+
+
+  
+
+

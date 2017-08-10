@@ -1,0 +1,55 @@
+
+<!-- Welcome Page -->
+<!-- index of surveys -->
+
+
+
+<h1 class="text-center"><strong>Surveyor</strong></h1>
+<h1 class="text-center"><strong>Tell Me #allthethings!</strong></h1>
+<br>
+
+<h4>Click on a survey below to take it or create one of your own!</h4><br>
+
+<%= link_to "Create a New Survey", new_admin_survey_path,
+    class: "btn btn-primary btn-lg btn-block btn-create text-center"%><br>
+
+<br>
+<h4>
+
+  <strong><ol></strong>
+      <!-- Title -->
+    <li><strong>How do you eat?</strong></li><br> 
+      <!-- Description -->
+    A look at all the strange eating habits of people<br><br>
+      <!-- Responses -->
+    <em>0 Responses</em><br>
+      <div class="row">
+        <div class="col-md-3">
+          <%= link_to "Take Survey", "#", class: "btn btn-lg text-center" %><br>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "View Results", "#", class: "btn btn-lg text-center" %><br>
+        </div>
+      </div>
+  <br>
+
+      <!-- Title -->
+    <li><strong>What can this country change?</strong></li><br>
+      <!-- Description -->
+    Lorem ipsum ... tempor<br>
+    Lorem ipsum ... tempor<br><br>
+      <!-- Responses -->
+    <em>0 Responses</em><br>
+      <div class="row">
+        <div class="col-md-3">
+          <%= link_to "Take Survey", "#", class: "btn btn-basic btn-lg text-center" %><br>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "View Results", "#", class: "btn btn-basic btn-lg text-center" %><br>
+        </div>
+      </div>
+  </ol>
+
+</h4>
+<br>     
+

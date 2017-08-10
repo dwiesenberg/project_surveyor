@@ -1,0 +1,16 @@
+<%= form_for @survey do |survey_fields| %>
+
+<div class="form-group">
+  <%= survey_fields.label :title, 'Survey Title' %>
+  <%= survey_fields.text_field :title, placeholder: "eg. 'The personality test", class: 'form-control' %>  
+</div>
+
+<div class="form-group">
+  <%= survey_fields.label :description, 'Survey Description' %>
+  <%= survey_fields.text_area :description, placeholder: "eg. 'Discovering what is unique and special about you because you are such a special beautiful snowflake", class: 'form-control' %>
+</div>
+
+
+  <%= survey_fields.submit 'Create Survey and Begin Adding Questions', class: 'btn btn-block btn-primary' %>
+
+<% end %>
