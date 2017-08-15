@@ -1,0 +1,60 @@
+<%= render partial: 'shared/nav' %>
+
+<h1 class="text-center">Survey Builder</h1>
+<hr>
+
+<div class='text-center'>
+  <span class="text-muted">1. Build Survey</span>
+  <span class='marker'>|</span> 
+  <span>2. Add Questions</span>  
+</div>
+
+<div class="text-muted">
+<p>Next, fill in the questions.</p>
+<br>
+
+<h4>Title</h4>
+<p><%= @survey.title %></p>
+
+
+<h4>Description</h4>
+<p><%= @survey.description %></p>
+  
+</div>
+
+<hr>
+
+<h4>Add a Multiple Choice Question:</h4>
+
+<div class='text-center'>
+  <span class="text-muted">1. Select Options</span>
+  <span class='marker'>|</span>
+  <span class="">2. Add Question Text</span>  
+</div>
+<br>
+<em>Next, add the text for each of your options.</em>
+<br><br>
+
+
+<%= form_for @question, {:url => {:action => :update_options} } do |question_fields| %>
+
+<div class="form-group">
+  <em>
+    <%= question_fields.label :content, 'What is your question?' %>
+  </em>
+  <%= question_fields.text_field :content, placeholder: "eg. 'Why are noodles so great?'", class: 'form-control' %>  
+</div>
+
+  <%= question_fields.fields_for :options do |option_fields| %>
+        <%= option_fields.label :content, "Option #{option_fields.index+1}:" %><br>
+        <%= option_fields.text_field :content, class: 'form-control' %><br>
+  <% end %>
+
+  <%= question_fields.submit 'Add Question', class: 'btn btn-block btn-primary' %>
+
+<% end %>
+
+<br>
+<%= link_to 'Back to previous step', edit_survey_question_path(@survey, @question) %>
+
+<br><br><br>

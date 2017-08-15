@@ -1,0 +1,57 @@
+<!-- responses new.html.erb -->
+
+<!-- Input  -->
+
+
+<h1 class="text-center"><strong>Survey Builder</strong>
+_______________________________</h1>
+
+<br>
+
+<h3><strong><%= @survey.title %></h3></strong><br>
+<h4>
+  <%= @survey.description %>
+  <em class="text-muted">Questions marked with an asterik (*) are required</em>
+<br><br>
+
+<h4>
+  <% unless @survey.questions.present? %>
+    <em>There are no questions yet!</em>
+
+  <% else %>
+
+    <%= form_for [@survey, @response] do |response_fields| %>
+      <ol>
+        <% @survey.questions.each do |question| %>
+          <li>
+            <%= response.hidden_field :survey_id, value: @survey.id %>
+            <%= response.hidden_field :question_id, value: question.id %>
+
+            <% if question_type == "Multiple Choice" %>
+
+              <%= response.collection_radio_buttons(:option_id, question.options.all, :id, :name, {})  do |b| %>
+              <%= b.label(class: "col-md-12"){b.radio_button + " " + b.text } %> 
+              <% end %>
+
+            <% else %>
+
+              <!-- question_type = number_range -->
+              <%= response.range_field :option_id, :in => (question.minimum_range_value..question.maximum_range_value), :step => 1 %>
+
+            <% end %>
+           
+            <br><br>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+
+    <br>
+
+    <%= response.submit 'Submit Your Survey', class: "btn btn-large btn-primary btn-wide" %>
+
+    <br><br>
+
+  <% end %>
+</h4>
+

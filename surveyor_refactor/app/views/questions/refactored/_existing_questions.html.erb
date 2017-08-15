@@ -1,0 +1,31 @@
+<!-- existing questions -->
+
+
+<h1>_______________________________</h1>
+
+
+<h3>Existing Questions:</h3><br>
+
+<h4>
+  <% if @survey.questions.pluck(:name).blank? %>
+    <em>There are no questions yet!</em>
+  <% else %>
+    <ol>
+      <% @survey.questions.each do |question| %>
+        <li>
+          <b><%= question.name %></b><br>
+          <em><%= question.required ? "Required." : "Not required." %></em>
+          <em><%= question.multiple_responses ? "Select one." : "Select one or more." %></em>
+          <ul>
+            <% question.options.each do |option| %>
+              <li><%= option.name %></li>
+            <% end %>
+          </ul>
+          <% if question.id? %>
+          <%= link_to "Remove Question", survey_question_path(@survey, question), method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</h4>

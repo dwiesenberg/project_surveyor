@@ -1,0 +1,35 @@
+
+<!-- new survey -->
+
+<h3 class="text-center">
+  <strong>1. Build Survey |</strong>
+  <a class="text-muted"> 2. Add Questions</a>
+</h3><br>
+
+<h4>First, choose a title and a description for your survey.</h4><br>
+
+<!-- input data -->
+
+<%= form_for @survey do |survey| %>
+
+    <h3><%= survey.label :title, "Survey Title" %></h3>
+    <h4><%= survey.text_field :title, size: 42,
+        placeholder: "eg. 'The personality test" %></h4><br>
+
+
+    <h3><%= survey.label :description, "Survey Description" %></h3>
+    <h4><%= survey.text_area :description, size: "42x5",
+        placeholder: "eg. 'Discovering what is unique and special about all you crazy people'" %></h4><br>
+
+  <!-- submit button -->
+  <div class= "row">
+    <div class = "col-md-12 text-center">
+      <br>
+      <%= survey.submit "Create Survey and Begin Adding Questions", class: "btn btn-primary btn-lg btn-block" %>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+  </div>
+
+<% end %>
+
+

@@ -1,0 +1,25 @@
+
+<!-- edit survey ... edit new question and choices-->
+
+
+<h1 class="text-center">
+  <strong>Survey Builder</strong>
+  _______________________________
+</h1>
+
+<% if @question.question_type == "Multiple Choice" %>
+
+  <%= render  :partial => "create_multiple_choice_1",
+            :locals => { :survey => @survey, :question => @question } %> 
+
+<% else %> 
+
+  <%= render  :partial => "create_number_range",
+            :locals => { :survey => @survey, :question => @question } %> 
+
+<% end %>  
+
+
+<%= render 'existing_questions' %>
+
+<br><br>

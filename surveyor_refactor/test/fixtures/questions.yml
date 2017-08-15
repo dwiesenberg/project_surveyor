@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  question_type: MyString
+  number_of_choices: 1
+  multiple_responses: false
+  required_boolean: MyString
+  survey: one
+
+two:
+  name: MyString
+  question_type: MyString
+  number_of_choices: 1
+  multiple_responses: false
+  required_boolean: MyString
+  survey: two

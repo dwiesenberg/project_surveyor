@@ -1,0 +1,62 @@
+
+<!-- new survey ... edit questions multiple choice part 1-->
+
+<h3 class="text-center">
+  <a class="text-muted">1. Build Survey </a>
+  <strong>| 2. Add Questions</strong>
+</h3><br>
+
+<!-- Survey Basic Information -->
+
+<%= render 'survey_basic_details' %>
+
+<!-- Add a Multiple Choice Question -->
+
+<h3>Add a Multiple Choice Question:</h3><br>
+
+<h4 class="text-center">
+  <strong>1. Select Options |</strong>
+  <a class="text-muted"> 2. Add Question Text</a>
+</h4><br>
+
+<%= form_for [@survey, @question] do |question| %>
+
+<!--  # dropdown collections ... options, multiple?, required? -->
+
+  <h4>
+
+    <em>How many options should the question have?</em>
+    <br><br>
+    <%= question.collection_select(:number_of_choices, (2..5).to_a, :to_i, :to_i, {}, class: "col-md-12") %><br><br>
+
+    <em>How many options can be selected?</em>
+    <br><br>
+    <%= question.radio_button(:multiple_responses, false) %>
+    <%= question.label(:multiple_responses, "Just One") %>
+    <br>
+    <%= question.radio_button(:multiple_responses, true) %>
+    <%= question.label(:multiple_responses, "Multiple") %>
+    <br><br>
+
+    <em>Is the question required?</em>
+    <br><br>
+    <%= question.radio_button(:required, true) %>
+    <%= question.label(:required, "Yes") %>
+    <br>
+    <%= question.radio_button(:required, false) %>
+    <%= question.label(:required, "No") %>
+
+    <!-- submit button -->
+    <div class= "row">
+      <div class = "col-md-12 text-center">
+        <br>
+        <%= question.submit "Continue to the Next Step", class: "btn btn-primary btn-lg btn-block" %>
+      </div>
+    </div>
+
+  </h4>
+
+<% end %>
+
+
+

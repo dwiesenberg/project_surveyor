@@ -1,0 +1,76 @@
+<%= render partial: 'shared/nav' %>
+
+<h1 class="text-center">Survey Builder</h1>
+<hr>
+
+<div class='text-center'>
+  <span class="text-muted">1. Build Survey</span>
+  <span class='marker'>|</span>
+  <span>2. Add Questions</span>  
+</div>
+
+<div class="text-muted">
+<p>Next, fill in the questions.</p>
+<br>
+
+<h4>Title</h4>
+<p><%= @survey.title %></p>
+
+
+<h4>Description</h4>
+<p><%= @survey.description %></p>
+  
+</div>
+
+<hr>
+
+<h4>Add a Multiple Choice Question:</h4>
+
+<div class='text-center'>
+  <span class="">1. Select Options</span>
+  <span class='marker'>|</span>
+  <span class="text-muted">2. Add Question Text</span>  
+</div>
+
+<br>
+<%= form_for [@survey, @question] do |question_fields| %>
+
+<div class="form-group">
+  <em><%= question_fields.label :num_options, 'How many options should the question have?' %>
+  </em>
+  <%= question_fields.select(:num_options, (1..5).map { |i| [i, i] }, {}, {class: 'form-control'}) %>
+</div>
+
+<div class="form-group">
+  <em>
+  <%= question_fields.label :one_selection, 'How many options can be selected?' %>
+  </em>
+  <br>
+  <%= question_fields.radio_button(:one_selection, true) %>
+  <%= question_fields.label(:one_selection, "Just One") %>
+  <br>
+  <%= question_fields.radio_button(:one_selection, false) %>
+  <%= question_fields.label(:one_selection, "Multiple") %>
+  <br>
+</div>
+
+<div class="form-group">
+  <em>
+  <%= question_fields.label :required, 'Is the question required?' %>
+  </em>
+  <br>
+  <%= question_fields.radio_button(:required, true) %>
+  <%= question_fields.label(:required, 'Yes') %>
+  <br>
+  <%= question_fields.radio_button(:required, true) %>
+  <%= question_fields.label(:required, 'No') %>
+</div>
+
+<%= question_fields.submit 'Continue to the Next Step', class: 'btn btn-primary btn-block' %>
+
+<% end %>
+
+<hr>
+
+<%= render 'existing_questions' %>
+

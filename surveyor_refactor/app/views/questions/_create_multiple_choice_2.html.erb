@@ -1,0 +1,53 @@
+
+<!-- new survey ... questions section part 2 -->
+<!-- add question and options -->
+
+
+<h3>Add a Multiple Choice Question:</h3><br>
+
+<h4 class="text-center">
+  <a class="text-muted">1. Select Options </a><strong>|
+  2. Add Question Text</strong>
+</h4><br>
+
+<h4><em>Next, add the text for each of your options.</em></h4><br>
+
+
+<%= form_for [@survey, @question], {:url => {:action => "update_options"} } do |question| %>
+
+  <h4>
+
+    <!-- insert question here -->
+    <%= question.label :name, "What is your question?" %><br>
+    <%= question.text_field :name, size: 42,
+        placeholder: 'eg, "Who does Number Two work for?"' %><br><br>
+
+    <!-- insert options here -->
+
+    <%= question.fields_for :options do |option| %>
+        <%= option.label :name, "Option #{option.index+1}:" %><br>
+        <%= option.text_field :name, size: 42,
+            placeholder: '"eg. "Dr Evil"' %><br><br>
+    <% end %>
+
+
+    <!-- submit button -->
+    <div class= "row">
+      <div class = "col-md-12 text-center">
+        <br>
+        <%= question.submit "Add Question", class: "btn btn-primary btn-lg btn-block" %>
+        <br><br>
+      </div>
+    </div>
+
+
+    <%= link_to "Back to previous step", edit_survey_question_path(@survey, @question) %>
+
+
+  </h4>
+
+<% end %>
+
+<h1>_______________________________</h1>
+
+

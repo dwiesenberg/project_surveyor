@@ -1,0 +1,20 @@
+
+<!-- Welcome Page -->
+<!-- index of surveys -->
+
+<h1 class="text-center"><strong>Surveyor</strong></h1>
+<h1 class="text-center"><strong>Tell Me #allthethings!</strong></h1>
+<br>
+<h3>Click on a survey below to take it or create one of your own!</h3><br>
+
+<%= link_to "Create a New Survey", new_survey_path,
+    class: "btn btn-primary btn-lg btn-block btn-create text-center" %><br>
+
+<h3><strong><u>Take a Survey</u></strong></h3>
+
+<% if @surveys.all.present? %>
+  <%= render "list_of_surveys" %>
+<% else %>
+  <h4><em>There are no surveys yet!</em></h4><br>
+<% end %>
+

@@ -1,0 +1,28 @@
+<!-- list of surveys on index page -->
+
+<ol>
+  <% @surveys.each do |survey| %>
+  <h3>
+    <li>
+      <strong><%= survey.title %></strong></h3>
+      <h4>
+        <%= survey.description %><br><br>
+        <em><%= pluralize survey.responses.size, "response" %></em>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <%= link_to "Take Survey", new_survey_response_path(survey), class: "btn btn-lg text-center" %><br>
+          </div>
+          <div class="col-md-3">
+            <%= link_to "View Results", survey_responses_path(survey), class: "btn btn-lg text-center" %><br>
+          </div>
+
+        </div>
+        <br>
+      </h4>
+    </li>
+  <% end %>  
+</ol>
+
+
