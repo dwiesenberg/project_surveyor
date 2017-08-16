@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-include QuestionsHelper
+  include QuestionsHelper
 
   def new
     # binding.pry
@@ -53,14 +53,13 @@ include QuestionsHelper
 
   def number_range_success
     flash[:success] = "Question created!"  
-    create_options(@question)
+    number_range_create_options(@question)
     redirect_to new_survey_question_path(@question.survey)
   end
 
   def edit_options
-    binding.pry
     @question = Question.find(params[:id])
-    @options = build_options(@question, @question.number_of_choices)
+    @options = multiple_choice_build_options(@question, @question.number_of_choices)
     @survey = @question.survey
   end
 
@@ -68,7 +67,7 @@ include QuestionsHelper
     @question = Question.find(params[:id])
     if @question.update(whitelisted_question_params)
       flash[:success] = "Question created!"
-      @survey = @question.survey
+      # @survey = @question.survey
       redirect_to new_survey_question_path(@question.survey)
     else
       flash.now[:error] = "Error! " + @question.errors.full_messages.to_s

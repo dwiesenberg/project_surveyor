@@ -1,6 +1,6 @@
 class Option < ApplicationRecord
   belongs_to :question, inverse_of: :options
-  has_many :responses
+  has_many :responses, dependent: :delete_all
 
   # validates :name, presence: true
 

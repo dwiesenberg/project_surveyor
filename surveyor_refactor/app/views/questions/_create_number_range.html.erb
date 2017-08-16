@@ -21,7 +21,7 @@
 
 <%= form_for [@survey, @question] do |question| %>
 
-<!--  # dropdown collections ... min & max (range), required? -->
+<!--  # dropdown collections -->
 
   <h4>
 
@@ -39,9 +39,15 @@
     <br><br>
     <%= question.collection_select(:maximum_range_value, (2..10).to_a, :to_i, :to_i, {}, class: "col-md-12") %><br><br>
 
+    <!-- default value to pass general validation -->
+        <!-- will be updated to actual value in method number_range_create_options -->
+    <%= question.hidden_field :number_of_choices, value: 2 %>
+
+    <%= question.hidden_field :multiple_responses, value: false %>
+
     <em>Is the question required?</em>
     <br><br>
-    <%= question.radio_button(:required, true) %>
+    <%= question.radio_button(:required, true, {checked: true}) %>
     <%= question.label(:required, "Yes") %>
     <br>
     <%= question.radio_button(:required, false) %>

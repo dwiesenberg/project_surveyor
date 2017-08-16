@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814191607) do
+ActiveRecord::Schema.define(version: 20170816131247) do
 
   create_table "options", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170814191607) do
   create_table "questions", force: :cascade do |t|
     t.string   "name"
     t.string   "question_type"
-    t.integer  "number_of_choices"
+    t.integer  "number_of_choices",   default: 2
     t.boolean  "multiple_responses"
     t.boolean  "required"
     t.integer  "survey_id"

@@ -31,7 +31,7 @@
 
     <em>How many options can be selected?</em>
     <br><br>
-    <%= question.radio_button(:multiple_responses, false) %>
+    <%= question.radio_button(:multiple_responses, false, {checked: true}) %>
     <%= question.label(:multiple_responses, "Just One") %>
     <br>
     <%= question.radio_button(:multiple_responses, true) %>
@@ -40,7 +40,7 @@
 
     <em>Is the question required?</em>
     <br><br>
-    <%= question.radio_button(:required, true) %>
+    <%= question.radio_button(:required, true, {checked: true}) %>
     <%= question.label(:required, "Yes") %>
     <br>
     <%= question.radio_button(:required, false) %>

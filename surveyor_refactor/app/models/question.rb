@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
 
-  has_many :options, inverse_of: :question
+  has_many :options, inverse_of: :question, 
+                     dependent: :delete_all
   accepts_nested_attributes_for :options,
                                 allow_destroy: true
 
@@ -9,7 +10,7 @@ class Question < ApplicationRecord
   validates :question_type, 
             inclusion: {in: ["Multiple Choice", "Number Range"]}
 
-  validates :minimum_range_value, on: :update,
+  validates :minimum_range_value, on: :update, 
             numericality: { less_than_or_equal_to: :maximum_range_value }
 
   validates :number_of_choices, on: :update,

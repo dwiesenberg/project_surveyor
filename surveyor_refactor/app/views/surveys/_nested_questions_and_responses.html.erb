@@ -1,0 +1,36 @@
+<!-- nested_questions_and_responses.html.erb -->
+
+<!-- from: survey_response_new.html.erb -->
+
+<%= survey.fields_for :responses do |response| %>
+
+  <ol>
+    <% @survey.questions.each do |question| %>
+      <li>
+        <!-- display question text-->
+        <%= question.name %><br><br>
+
+        <!-- gather data for response to question -->
+
+        <%= response.hidden_field :survey_id, value: @survey.id %>
+        <%= response.hidden_field :question_id, value: question.id %>
+
+        <% if question.question_type == "Multiple Choice" %>
+
+          <%= response.collection_radio_buttons(:option_id, question.options.all, :id, :name, {checked: question.options.first.id})  do |b| %>
+            <%= b.label(class: "col-md-12"){b.radio_button + " " + b.text } %><br><br>
+          <% end %>
+
+        <% else %>
+          <!-- question_type = "Number Range" -->
+          <p class="text-center"><%= question.minimum_range_value %> ................................................................................................ <%= question.maximum_range_value %></p>
+          <%= response.range_field :option_id, :in => (question.minimum_range_value..question.maximum_range_value), :step => 1 %>
+
+          <br><br>
+        <% end %>
+        <br>
+      </li>
+    <% end %>
+  </ol>
+
+<% end %>  <!-- end fields_for -->

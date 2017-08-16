@@ -8,5 +8,3 @@ Tingting
 Survey:Questions is 1:X
 Question:Options is 1:X
 Survey title:string, description:string
-
-Source: https://github.com/eating247/project_surveyor

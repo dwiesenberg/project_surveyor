@@ -1,0 +1,41 @@
+<!-- survey_response_new.html.erb -->
+
+
+<h1 class="text-center"><strong>Survey Taker</strong>
+_______________________________</h1>
+
+
+<!-- display survey attributes -->
+<h3><strong><%= @survey.title %></h3></strong>  
+<p> </p>
+<h4>
+
+  <%= @survey.description %>
+  <br><br>
+  <em class="text-muted">Questions marked with an asterik (*) are required</em>
+  <br><br>
+
+
+  <!-- display questions and options -->
+  <% unless @survey.questions.present? %>
+    <em>There are no questions yet!</em>
+
+  <% else %>
+
+    <%= form_for @survey, {:url => {:action => "survey_response_create"} } do |survey| %>
+
+
+      <%= render partial: "nested_questions_and_responses", 
+        locals: {survey: survey} %>
+
+      <br>
+
+      <%= survey.submit "Submit Your Survey", class: "btn btn-primary btn-lg btn-block" %>
+
+    <% end %>  <!-- end forms_for -->  
+
+    <br><br>
+
+  <% end %>
+</h4>
+
