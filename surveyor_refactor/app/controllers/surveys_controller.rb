@@ -24,11 +24,15 @@ class SurveysController < ApplicationController
 # methods for responses
 
   def survey_response_new
+    # binding.pry
     @survey = Survey.find(params[:id])
-    @response = build_responses(@survey)
+    # @survey.questions.includes(:options)
+    @response = @survey.responses.build
+    # @response = build_responses(@survey)
   end
 
   def survey_response_create
+    # binding.pry
     @survey = Survey.find(params[:id])
     if @survey.update(whitelisted_response_params)
       flash[:success] = "Success! Thank you for taking this survey."
@@ -40,10 +44,10 @@ class SurveysController < ApplicationController
   end
 
   def survey_responses_show
-    # TODO
-    @survey = Survey.find(params[:survey_id])
-    @responses = Response.all
-
+    # binding.pry
+    @survey = Survey.find(params[:id])
+    @survey.questions.includes(:options)
+    # @survey.questions.includes(:options) # no need to select :responses because one can obtain their count from "responses_count" in :options 
   end
 
 

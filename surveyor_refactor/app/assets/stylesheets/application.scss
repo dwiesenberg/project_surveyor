@@ -16,3 +16,7 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.field-with-errors {
+  border: 3px, solid, red;
+}

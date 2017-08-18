@@ -1,0 +1,6 @@
+<!-- multiple_choice_multiple_selection.html.erb -->
+<!-- from: _nested_questions_and_responses.html.erb -->
+
+<%= response.collection_radio_buttons(:option_id, question.options.all, :id, :name, {checked: question.options.first.id}, multiple: false)  do |b| %>
+  <%= b.label(class: "col-md-12"){b.radio_button + " " + b.text } %><br><br>
+<% end %>

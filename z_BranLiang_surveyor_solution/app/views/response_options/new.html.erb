@@ -1,0 +1,34 @@
+<div class="new-responses">
+  <%= render 'shared/question_header', survey: @survey %>
+
+  <h3><strong>Add a Multiple Choice Question:</strong></h3>
+  <div class="text-center">
+    <h4><span class="text-muted">1.Select Options</span> | <strong>2.Add Question Text</strong></h4>
+  </div>
+
+  <hr>
+
+  <%= form_for @question do |f| %>
+    <div class="form-group">
+      <h4><strong><i class="fa fa-pencil-square-o" aria-hidden="true"></i> What is your question?</strong></h4>
+      <%= f.text_field :text, class: "form-control input-lg" %>
+    </div>
+
+    <% @question.options.times do |i| %>
+      <div class="form-group">
+        <h4><strong><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Option <%= i + 1 %>:</strong></h4>
+        <%= f.fields_for :response_options do |response_option| %>
+          <%= response_option.text_field :text, class: "form-control input-lg" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.submit "Add Question", class: "btn btn-primary btn-lg btn-block" %>
+    </div>
+  <% end %>
+  <h4><%= link_to "Back to previews step", edit_question_path(@question) %></h4>
+
+  <%= render 'shared/exist_questions', survey: @survey %>
+
+</div>

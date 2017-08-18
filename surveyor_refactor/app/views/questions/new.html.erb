@@ -8,6 +8,12 @@ _______________________________</h1>
 
 <%= render  :partial => "question_initial",
             :locals => { :survey => @survey, :question => @question } %> 
+
+
+<%= render 'existing_questions' %><br><br>
+
+<%= link_to "Finish Building Survey and Return", :root, class: "btn btn-primary btn-lg btn-block" %> 
+            
 <br>
 
 

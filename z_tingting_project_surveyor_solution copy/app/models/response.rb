@@ -1,3 +1,5 @@
+# tingting
+
 class Response < ApplicationRecord
   belongs_to :survey
   has_many :selections, inverse_of: :response

@@ -1,0 +1,17 @@
+<h1><%= @survey.title %></h1>
+<h3><%= @survey.description %></h3>
+
+<%= form_for [@survey, @survey.questions.last] do |f| %>
+  <div class="form-group">
+    <%= f.label :question, "Question:" %>
+    <%= f.text_field :question %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :type, "What type of question do you want to create?" %><br>
+    <%= f.radio_button :type, 'multiple' %>Multiple Choice
+    <%= f.radio_button :type, 'range' %>Range
+  </div>
+
+  <%= f.submit %>
+<% end %>

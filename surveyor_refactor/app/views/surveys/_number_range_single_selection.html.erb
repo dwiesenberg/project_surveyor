@@ -1,0 +1,21 @@
+<!-- number_range_single_selection.html.erb -->
+<!-- from: _nested_questions_and_responses.html.erb -->
+
+
+<% min = question.minimum_range_value %>
+<% max = question.maximum_range_value %>
+
+<div class="row">
+  <div class="col-md-1">
+    <%= min %>
+  </div>
+  <div class="col-md-10">
+    <%= response.range_field :option_id, :in => (min..max), :step => 1 %>
+  </div>
+  <div class="col-md-1">
+    <%= max %>
+  </div>
+</div>
+
+
+

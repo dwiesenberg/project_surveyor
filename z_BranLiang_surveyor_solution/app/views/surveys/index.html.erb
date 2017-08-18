@@ -1,0 +1,39 @@
+<div class="home-page">
+  <header class="text-center">
+    <h1>
+      <i class="fa fa-yoast" aria-hidden="true"></i>
+      <strong>Surveyor:</strong>
+    </h1>
+    <h1>Tell Me #allthethings!</h1>
+    <hr>
+    <p>
+      Click on a survey below to take it or create one of your own!
+    </p>
+  </header> <!-- Top title finish here -->
+
+
+  <!-- Create new survey button -->
+  <%= link_to "Create a New Survey", new_survey_path, class: "btn btn-primary btn-lg btn-block" %>
+
+  <hr>
+
+  <h3><strong>Take a Survey</strong></h3>
+  <ul class="fa-ul">
+    <% @surveys.each do |survey| %>
+      <li>
+        <i class="fa-li fa fa-flag"></i>
+        <h3><strong><%= survey.title.capitalize %></strong></h3>
+        <p>
+          <small><span class="text-muted"><%= "Created at:  #{survey.created_at.in_time_zone('Asia/Shanghai')}" %></span></small>
+        </p>
+        <p>
+          <%= survey.description.capitalize %>
+        </p>
+        <%= link_to "Take Survey", new_respondent_path(:survey_id => survey.id), class: "btn btn-info" %>
+        <%= link_to "View Results", result_path(survey), class: "btn btn-info" %>
+        <%= link_to "Add Questions", choices_path(:survey_id => survey.id), class: "btn btn-info" %>
+      </li>
+
+    <% end %>
+  </ul>
+</div> <!-- closer for home-page -->

@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
     # binding.pry
     @survey = Survey.find(params[:survey_id])
     @question = @survey.questions.build
-    puts @question # test
+    @survey.questions.includes(:options)
     # would Question.new work just as well?
   end
 
@@ -26,8 +26,9 @@ class QuestionsController < ApplicationController
 
   def edit
     @survey = Survey.find(params[:survey_id])
-    @question = Question.find(params[:id])
-    # view partial is _create_multiple_choice_1 or _create_number_range according to question_type. 
+    # @survey.includes(:questions)
+    @question = Question.find(params[:id]) 
+    @survey.questions.includes(:options)
   end
 
   def update

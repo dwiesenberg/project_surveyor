@@ -1,3 +1,5 @@
+# tingting
+
 class ResponsesController < ApplicationController
   include ResponsesHelper
 
