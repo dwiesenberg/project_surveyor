@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :surveys, only: [:index, :new, :create] do
     resources :questions
-    # resources :responses, only: [:index, :new, :create]
+    resources :responses, only: [:index, :new, :create]
   end
 
 
@@ -17,17 +17,17 @@ Rails.application.routes.draw do
     to: 'questions#update_options',
     as: 'questions_update_options'
 
-  get   '/surveys/:id/survey_response_new',
-    to: 'surveys#survey_response_new',
-    as: 'survey_response_new'
+  # get   '/surveys/:id/survey_response_new',
+  #   to: 'surveys#survey_response_new',
+  #   as: 'survey_response_new'
 
-  patch  '/surveys/:id/survey_response_create',
-    to: 'surveys#survey_response_create',
-    as: 'survey_response_create'
+  # patch  '/surveys/:id/survey_response_create',
+  #   to: 'surveys#survey_response_create',
+  #   as: 'survey_response_create'
 
-  get   '/surveys/:id/survey_responses_show',
-    to: 'surveys#survey_responses_show',
-    as: 'survey_responses_show'
+  # get   '/surveys/:id/survey_responses_show',
+  #   to: 'surveys#survey_responses_show',
+  #   as: 'survey_responses_show'
 
 
 end

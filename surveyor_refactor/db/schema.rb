@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816131247) do
+ActiveRecord::Schema.define(version: 20170821011422) do
 
   create_table "options", force: :cascade do |t|
     t.string   "name"
     t.integer  "question_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "responses_count", default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "selections_count", default: 0, null: false
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -36,15 +36,19 @@ ActiveRecord::Schema.define(version: 20170816131247) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "survey_id"
+    t.index ["survey_id"], name: "index_responses_on_survey_id"
+  end
+
+  create_table "selections", force: :cascade do |t|
+    t.integer  "response_id"
     t.integer  "option_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "survey_id"
-    t.index ["option_id"], name: "index_responses_on_option_id"
-    t.index ["question_id", "option_id"], name: "index_responses_on_question_id_and_option_id"
-    t.index ["question_id"], name: "index_responses_on_question_id"
-    t.index ["survey_id"], name: "index_responses_on_survey_id"
+    t.index ["option_id"], name: "index_selections_on_option_id"
+    t.index ["response_id"], name: "index_selections_on_response_id"
   end
 
   create_table "surveys", force: :cascade do |t|

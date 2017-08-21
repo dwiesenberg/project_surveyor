@@ -1,4 +1,4 @@
-<!-- survey_response_new.html.erb -->
+<!-- response new.html.erb -->
 
 
 <h1 class="text-center"><strong>Survey Taker</strong>
@@ -22,15 +22,16 @@ _______________________________</h1>
 
   <% else %>
 
-    <%= form_for @survey, {:url => {:action => "survey_response_create"} } do |survey| %>
+    <%= form_for [@survey, @response] do |response| %>
 
+      <%= response.hidden_field :survey_id, value: @survey.id %>
 
       <%= render partial: "nested_questions_and_responses", 
-        locals: {survey: survey} %>
+        locals: {survey: @survey, response: response} %>
 
       <br>
 
-      <%= survey.submit "Submit Your Survey", class: "btn btn-primary btn-lg btn-block" %>
+      <%= response.submit "Submit Your Survey Response", class: "btn btn-primary btn-lg btn-block" %>
 
     <% end %>  <!-- end forms_for -->  
 

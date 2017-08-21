@@ -12,7 +12,7 @@ _______________________________</h1>
 
   <%= @survey.description %>
   <br><br>
-  <em><%= pluralize @survey.responses_count, "Responses" %></em>
+  <em><%= pluralize @survey.responses.size, "Response" %></em>
   <br><br>
 
   <!-- display questions and options -->

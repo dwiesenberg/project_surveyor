@@ -12,10 +12,11 @@
 
         <div class="row">
           <div class="col-md-3">
-            <%= link_to "Take Survey", survey_response_new_path(survey), class: "btn btn-lg text-center" %><br>
+            <%= link_to "Take Survey", new_survey_response_path(survey), class: "btn btn-lg text-center" %><br>
+
           </div>
           <div class="col-md-3">
-            <%= link_to "View Results", survey_responses_show_path(survey), class: "btn btn-lg text-center" %><br>
+            <%= link_to "View Results", survey_responses_path(survey), class: "btn btn-lg text-center" %><br>
           </div>
 
         </div>

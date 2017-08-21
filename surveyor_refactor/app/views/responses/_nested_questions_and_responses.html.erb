@@ -1,0 +1,43 @@
+<!-- nested_questions_and_responses.html.erb -->
+<!-- insert for errors -->
+
+
+<!-- from: (response controller) new.html.erb -->
+
+<ol>
+
+<%= response.fields_for :selections do |selection| %>
+
+  <% @survey.questions.each do |question| %>
+
+    <li>
+      <!-- display question text-->
+      <%= question.name %><br><br>
+
+        <!-- gather data for response to question -->
+
+        <%= selection.hidden_field :response_id, value: @response.id %>
+
+        <% if question.question_type == "Multiple Choice" %>
+          <% if question.multiple_responses %>
+            <%= render 'multiple_choice_multiple_selection', question: question, selection: selection %>
+          <% else %>
+            <%= render 'multiple_choice_single_selection', question: question, selection: selection %>
+          <% end %>
+        <% else %>
+          <!-- question.question_type = "Number Range" -->  
+          <%= render 'number_range_single_selection', question: question, selection: selection %>
+          <br><br>
+        <% end %>
+
+
+
+      <br>  
+    </li>
+
+  <% end %> <!-- end questions.each -->
+
+<% end %>  <!-- end fields_for -->
+</ol>
+
+
